@@ -1,33 +1,30 @@
 ﻿using System;
+using System.Data;
 
 namespace LunchPail
 {
   public class DbContext : IDbContext
   {
-    private IUnitOfWorkFactory unitOfWorkFactory;
-
+    private readonly IDbConnectionFactory connectionFactory;
+    private IDbConnection connection;
+    private IDbTransaction transaction;
     private IUnitOfWork unitOfWork;
 
-    public DbContext(IUnitOfWorkFactory unitOfWorkFactory)
+    public DbContext(IDbConnectionFactory connectionFactory)
     {
-      this.unitOfWorkFactory = unitOfWorkFactory;
+      this.connectionFactory = connectionFactory;
     }
 
     public IDbContextState State { get; private set; } = IDbContextState.Closed;
 
-    public IUnitOfWork UnitOfWork
-    {
-      get
-      {
-        if (unitOfWork == null)
-        {
-          unitOfWork = unitOfWorkFactory.Create();
-          State = IDbContextState.Open;
-        }
+    public IDbConnection Connection =>
+      connection ?? (connection = OpenConnection());
 
-        return unitOfWork;
-      }
-    }
+    public IDbTransaction Transaction =>
+      transaction ?? (transaction = Connection.BeginTransaction());
+
+    public IUnitOfWork UnitOfWork =>
+      unitOfWork ?? (unitOfWork = new UnitOfWork(Transaction));
 
     public void Commit()
     {
@@ -35,6 +32,11 @@ namespace LunchPail
       {
         UnitOfWork.Commit();
         State = IDbContextState.Comitted;
+      }
+      catch
+      {
+        Rollback();
+        throw;
       }
       finally
       {
@@ -55,8 +57,20 @@ namespace LunchPail
       }
     }
 
+    private IDbConnection OpenConnection()
+    {
+      State = IDbContextState.Open;
+      return connectionFactory.CreateOpenConnection();
+    }
+
     private void Reset()
     {
+      Connection?.Close();
+      Connection?.Dispose();
+      Transaction?.Dispose();
+
+      connection = null;
+      transaction = null;
       unitOfWork = null;
     }
   }

@@ -5,74 +5,34 @@ namespace LunchPail
 {
   public class UnitOfWork : IUnitOfWork
   {
-    private readonly IDbConnection connection;
-    private IDbTransaction transaction;
-
-    public UnitOfWork(IDbConnection connection)
+    public UnitOfWork(IDbTransaction transaction)
     {
-      this.connection = connection;
+      State = IUnitOfWorkState.Open;
+      Transaction = transaction;
     }
 
-    public IUnitOfWorkState State { get; private set; } = IUnitOfWorkState.Closed;
+    public IUnitOfWorkState State { get; private set; }
 
-    public IDbTransaction Transaction
-    {
-      get
-      {
-        if (transaction == null)
-        {
-          transaction = connection.BeginTransaction();
-          State = IUnitOfWorkState.Open;
-        }
-
-        return transaction;
-      }
-    }
+    public IDbTransaction Transaction { get; private set; }
 
     public void Commit()
     {
       try
       {
         Transaction.Commit();
-        Transaction.Connection?.Close();
-
         State = IUnitOfWorkState.Comitted;
       }
-      catch
+      catch (Exception)
       {
         Transaction.Rollback();
         throw;
-      }
-      finally
-      {
-        Reset();
       }
     }
 
     public void Rollback()
     {
-      try
-      {
-        Transaction.Rollback();
-        Transaction.Connection?.Close();
-
-        State = IUnitOfWorkState.RolledBack;
-      }
-      catch
-      {
-        throw;
-      }
-      finally
-      {
-        Reset();
-      }
-    }
-
-    private void Reset()
-    {
-      Transaction?.Dispose();
-      Transaction?.Connection?.Dispose();
-      transaction = null;
+      Transaction.Rollback();
+      State = IUnitOfWorkState.RolledBack;
     }
   }
 }

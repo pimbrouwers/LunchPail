@@ -5,33 +5,22 @@ using System.Text;
 
 namespace LunchPail
 {
-  public class DbConnectionFactory<TConnection> : IDbConnectionFactory where TConnection : IDbConnection, new()
+  public class DbConnectionFactory : IDbConnectionFactory
   {
-    private string connectionString;
+    private readonly Func<IDbConnection> connectionFactoryFn;
 
-    public DbConnectionFactory(string connectionString)
+    /// <summary>
+    /// Responsible for instantiating new IDbConnection's
+    /// </summary>
+    /// <param name="connectionFactory">Should return open IDbConnection instance</param>
+    public DbConnectionFactory(Func<IDbConnection> connectionFactory)
     {
-      this.connectionString = connectionString ?? throw new ArgumentNullException(nameof(connectionString));
+      this.connectionFactoryFn = connectionFactory ?? throw new ArgumentNullException(nameof(connectionFactory));
     }
 
     public IDbConnection CreateOpenConnection()
     {
-      var conn = new TConnection();
-      conn.ConnectionString = connectionString;
-
-      try
-      {
-        if (conn.State != ConnectionState.Open)
-        {
-          conn.Open();
-        }
-      }
-      catch (Exception exception)
-      {
-        throw new Exception("An error occured while connecting to the database. See innerException for details.", exception);
-      }
-
-      return conn;
+      return connectionFactoryFn();
     }
   }
 }

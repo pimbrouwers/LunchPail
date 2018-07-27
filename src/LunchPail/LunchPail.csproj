@@ -12,6 +12,7 @@
     <RepositoryUrl>https://github.com/pimbrouwers/lunch-pail</RepositoryUrl>
     <RepositoryType>Git</RepositoryType>
     <PackageTags>unit-of-work ado.net dbcontext datacontext data entity</PackageTags>
+    <Version>1.0.1</Version>
   </PropertyGroup>
 
 </Project>

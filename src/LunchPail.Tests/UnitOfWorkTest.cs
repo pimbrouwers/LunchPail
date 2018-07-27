@@ -9,40 +9,21 @@ namespace LunchPail.Tests
 {
   public class UnitOfWorkTest
   {
-    protected readonly Mock<IDbConnection> dbConnection;
+    protected readonly Mock<IDbTransaction> transaction;
     protected readonly UnitOfWork unitOfWork;
 
     public UnitOfWorkTest()
     {
-      dbConnection = new Mock<IDbConnection>();
+      transaction = new Mock<IDbTransaction>();
 
-      var transaction = new Mock<IDbTransaction>();
-
-      dbConnection
-        .Setup(d => d.BeginTransaction())
-        .Returns(transaction.Object);
-
-      unitOfWork = new UnitOfWork(dbConnection.Object);
+      unitOfWork = new UnitOfWork(transaction.Object);
     }
 
     public class NewUnitOfWork : UnitOfWorkTest
     {
       [Fact]
-      public void Should_have_closed_state()
-      {
-        //Assert
-        Assert.Equal(IUnitOfWorkState.Closed, unitOfWork.State);
-      }
-    }
-
-    public class OpenUnitOfWork : UnitOfWorkTest
-    {
-      [Fact]
       public void Should_have_open_state()
       {
-        //Arrange
-        var transaction = unitOfWork.Transaction;
-
         //Assert
         Assert.Equal(IUnitOfWorkState.Open, unitOfWork.State);
       }
@@ -58,6 +39,18 @@ namespace LunchPail.Tests
 
         //Assert
         Assert.Equal(IUnitOfWorkState.Comitted, unitOfWork.State);
+      }
+
+      [Fact]
+      public void Should_fail_commit_and_rollback()
+      {
+        //Arrange
+        transaction
+          .Setup(t => t.Commit())
+          .Throws(new Exception("fake exception"));
+
+        //Assert
+        Assert.Throws<Exception>(() => unitOfWork.Commit());
       }
     }
 

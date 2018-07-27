@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Data;
 
 namespace LunchPail
 {
@@ -13,12 +14,22 @@ namespace LunchPail
   public interface IDbContext
   {
     /// <summary>
-    /// Represents the current state of the context
+    /// Current state of the context
     /// </summary>
     IDbContextState State { get; }
 
     /// <summary>
-    /// Represents the current unit of work
+    /// Current database connection
+    /// </summary>
+    IDbConnection Connection { get; }
+
+    /// <summary>
+    /// Current database transaction
+    /// </summary>
+    IDbTransaction Transaction { get; }
+
+    /// <summary>
+    /// Current unit of work
     /// </summary>
     IUnitOfWork UnitOfWork { get; }
 

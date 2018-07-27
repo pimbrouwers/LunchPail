@@ -5,7 +5,6 @@ namespace LunchPail
 {
   public enum IUnitOfWorkState
   {
-    Closed,
     Open,
     Comitted,
     RolledBack

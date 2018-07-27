@@ -1,6 +1,7 @@
 ﻿using Moq;
 using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Text;
 using Xunit;
 
@@ -8,19 +9,26 @@ namespace LunchPail.Tests
 {
   public class DbContextTest
   {
+    protected Mock<IDbConnection> connection;
     protected DbContext db;
-    protected Mock<IUnitOfWorkFactory> unitOfWorkFactory;
+    protected Mock<IDbConnectionFactory> dbConnectionFactory;
+    protected Mock<IDbTransaction> transaction;
 
     public DbContextTest()
     {
-      unitOfWorkFactory = new Mock<IUnitOfWorkFactory>();
+      connection = new Mock<IDbConnection>();
+      dbConnectionFactory = new Mock<IDbConnectionFactory>();
+      transaction = new Mock<IDbTransaction>();
 
-      var unitOfWork = new Mock<IUnitOfWork>();
-      unitOfWorkFactory
-        .Setup(u => u.Create())
-        .Returns(unitOfWork.Object);
+      connection
+        .Setup(c => c.BeginTransaction())
+        .Returns(transaction.Object);
 
-      db = new DbContext(unitOfWorkFactory.Object);
+      dbConnectionFactory
+        .Setup(u => u.CreateOpenConnection())
+        .Returns(connection.Object);
+
+      db = new DbContext(dbConnectionFactory.Object);
     }
 
     public class NewDbContext : DbContextTest
@@ -56,6 +64,18 @@ namespace LunchPail.Tests
 
         //Assert
         Assert.Equal(IDbContextState.Comitted, db.State);
+      }
+
+      [Fact]
+      public void Should_fail_commit_and_rollback()
+      {
+        //Arrange
+        transaction
+          .Setup(t => t.Commit())
+          .Throws(new Exception("fake exception"));
+
+        //Assert
+        Assert.Throws<Exception>(() => db.Commit());
       }
     }
 
