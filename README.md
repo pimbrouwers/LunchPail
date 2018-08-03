@@ -86,6 +86,30 @@ public void ConfigureServices(IServiceCollection services)
 }
 ```
 
-With the context and repository registered, you're free to inject this into your controller or service layer.
+5. With the context and repository registered, you're free to inject this into your controller or service layer.
+
+```c#
+public class ProductService 
+{
+  private readonly IDbContext dbContext;
+  private readonly IProductRepository productRepository;
+
+  public ProductService (
+    IDbContext dbContext,
+    IProductRepository productRepository)
+  {
+    this.dbContext = dbContext;
+    this.productRepository = productRepository;
+  }
+
+  public Product Read(int id)
+  {
+    var product = productRepository.Read(id);
+    dbContext.Commit();
+
+    return product;
+  }
+}
+```
 
 Built with ♥ by [Pim Brouwers](https://github.com/pimbrouwers) in Toronto, ON. 
