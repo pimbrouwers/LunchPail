@@ -1,0 +1,27 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netstandard2.0</TargetFramework>
+    <Authors>Pim Brouwers</Authors>
+    <Company>Pim Brouwers</Company>
+    <Description>A .NET Standard compliant abstract repository for use with LunchPail.</Description>
+    <Copyright>2018</Copyright>
+    <PackageLicenseUrl>https://github.com/pimbrouwers/lunch-pail/blob/master/LICENSE</PackageLicenseUrl>
+    <PackageProjectUrl>https://github.com/pimbrouwers/lunch-pail</PackageProjectUrl>
+    <PackageIconUrl>http://www.pimbrouwers.com/cinch.png</PackageIconUrl>
+    <RepositoryUrl>https://github.com/pimbrouwers/lunch-pail</RepositoryUrl>
+    <RepositoryType>Git</RepositoryType>
+    <PackageTags>unit-of-work ado.net dbcontext datacontext data entity repository</PackageTags>
+    <Version>1.0.0</Version>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Dapper" Version="1.50.5" />
+    <PackageReference Include="Sequel" Version="1.0.5" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\src\LunchPail\LunchPail.csproj" />
+  </ItemGroup>
+
+</Project>
