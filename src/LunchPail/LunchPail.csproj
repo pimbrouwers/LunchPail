@@ -15,4 +15,9 @@
     <Version>1.0.1</Version>
   </PropertyGroup>
 
+  <ItemGroup>
+    <PackageReference Include="Dapper" Version="1.50.5" />
+    <PackageReference Include="Sequel" Version="1.0.4" />
+  </ItemGroup>
+
 </Project>
