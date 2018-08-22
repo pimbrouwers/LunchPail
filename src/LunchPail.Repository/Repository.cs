@@ -5,7 +5,7 @@ using System.Collections.Generic;
 using System.Data;
 using System.Threading.Tasks;
 
-namespace LunchPail.Repository
+namespace LunchPail
 {
   public abstract class Repository<TEntity> where TEntity : class
   {
