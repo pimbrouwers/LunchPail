@@ -3,8 +3,8 @@ using System.Data;
 
 namespace LunchPail
 {
-  public interface IDbConnectionFactory
-  {
-    IDbConnection CreateOpenConnection();
-  }
+public interface IDbConnectionFactory
+{
+  IDbConnection CreateOpenConnection();
+}
 }
