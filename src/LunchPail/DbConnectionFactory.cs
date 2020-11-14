@@ -3,22 +3,20 @@ using System.Data;
 
 namespace LunchPail
 {
-public class DbConnectionFactory : IDbConnectionFactory
-{
-  private readonly Func<IDbConnection> connectionFactoryFn;
+    public interface IDbConnectionFactory
+    {
+        IDbConnection CreateOpenConnection();
+    }
 
-  /// <summary>
-  /// Responsible for instantiating new IDbConnection's
-  /// </summary>
-  /// <param name="connectionFactory">Should return open IDbConnection instance</param>
-  public DbConnectionFactory(Func<IDbConnection> connectionFactory)
-  {
-    this.connectionFactoryFn = connectionFactory ?? throw new ArgumentNullException(nameof(connectionFactory));
-  }
+    public class DbConnectionFactory : IDbConnectionFactory
+    {
+        private readonly Func<IDbConnection> _connectionFactoryFn;
 
-  public IDbConnection CreateOpenConnection()
-  {
-    return connectionFactoryFn();
-  }
-}
+        public DbConnectionFactory(Func<IDbConnection> connectionFactory)
+        {
+            _connectionFactoryFn = connectionFactory ?? throw new ArgumentNullException(nameof(connectionFactory));
+        }
+
+        public IDbConnection CreateOpenConnection() => _connectionFactoryFn();
+    }
 }

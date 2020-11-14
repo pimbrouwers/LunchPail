@@ -1,7 +1,7 @@
-language: csharp  
-mono: none  
-dotnet: 2.1.100
-dist: trusty  
+language: csharp
+mono: none
+dotnet: 5.0.100
+solution: LunchPail.sln
 script:
-  - cd ./src/LunchPail.Tests
-  - dotnet test
+  - dotnet restore
+  - dotnet test  

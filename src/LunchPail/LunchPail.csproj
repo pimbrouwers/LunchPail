@@ -1,23 +1,16 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
     <TargetFramework>netstandard2.0</TargetFramework>
     <Authors>Pim Brouwers</Authors>
-    <Company>Pim Brouwers</Company>
     <Description>A .NET Standard compliant Unit of Work implementation for ADO.NET. The UoW is the workhorse of the data context, so the project was dubbed "lunch pail" as a reference to blue collar athletes.</Description>
-    <Copyright>2018</Copyright>
+    <Copyright>2020</Copyright>
     <PackageLicenseUrl>https://github.com/pimbrouwers/lunch-pail/blob/master/LICENSE</PackageLicenseUrl>
     <PackageProjectUrl>https://github.com/pimbrouwers/lunch-pail</PackageProjectUrl>
-    <PackageIconUrl>http://www.pimbrouwers.com/cinch.png</PackageIconUrl>
     <RepositoryUrl>https://github.com/pimbrouwers/lunch-pail</RepositoryUrl>
     <RepositoryType>Git</RepositoryType>
     <PackageTags>unit-of-work ado.net dbcontext datacontext data entity</PackageTags>
-    <Version>1.0.1</Version>
+    <Version>2.0.0</Version>
   </PropertyGroup>
-
-  <ItemGroup>
-    <PackageReference Include="Dapper" Version="1.50.5" />
-    <PackageReference Include="Sequel" Version="1.0.4" />
-  </ItemGroup>
 
 </Project>
