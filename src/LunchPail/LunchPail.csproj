@@ -4,8 +4,7 @@
     <TargetFramework>netstandard2.0</TargetFramework>
     <Authors>Pim Brouwers</Authors>
     <Description>A .NET Standard compliant Unit of Work implementation for ADO.NET. The UoW is the workhorse of the data context, so the project was dubbed "lunch pail" as a reference to blue collar athletes.</Description>
-    <Copyright>2020</Copyright>
-    <PackageLicenseUrl>https://github.com/pimbrouwers/lunch-pail/blob/master/LICENSE</PackageLicenseUrl>
+    <Copyright>2020</Copyright>    
     <PackageProjectUrl>https://github.com/pimbrouwers/lunch-pail</PackageProjectUrl>
     <RepositoryUrl>https://github.com/pimbrouwers/lunch-pail</RepositoryUrl>
     <RepositoryType>Git</RepositoryType>
