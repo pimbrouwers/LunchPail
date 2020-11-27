@@ -1,9 +1,8 @@
 ﻿# lunch-pail
 [lunch-pail](https://github.com/pimbrouwers/lunch-pail) is a .NET Standard compliant Unit of Work implementation for ADO.NET. The UoW is the workhorse of the data context, so the project was dubbed "lunch pail" as a reference to blue collar athletes.
 
-
-![NuGet Version](https://img.shields.io/nuget/v/LunchPail.svg)
-[![Build Status](https://travis-ci.org/pimbrouwers/lunch-pail.svg?branch=master)](https://travis-ci.org/pimbrouwers/lunch-pail)
+[![NuGet Version](https://img.shields.io/nuget/v/LunchPail.svg)](https://www.nuget.org/packages/LunchPail)
+[![Build Status](https://travis-ci.org/pimbrouwers/LunchPail.svg?branch=master)](https://travis-ci.org/pimbrouwers/LunchPail)
 
 ## Getting Started
 
