@@ -51,20 +51,9 @@ public interface IProductRepository
   Task<Product> Read (int id);
 }
 
-public class ProductRepository
+public class ProductRepository : DbRepository
 {
-  private readonly IDbContext dbContext;
-  
-  public ProductRepository(IDbContext dbContext)
-  {
-    this.dbContext = dbContext;
-  }
-
-  private IDbConnection Connection =>
-      dbContext.UnitOfWork.Transaction.Connection;
-
-    private IDbTransaction Transaction =>
-      dbContext.UnitOfWork.Transaction;
+  public ProductRepository(IDbContext dbContext) : base(dbContext) { }
 
   public Product Read(int id)
   {
