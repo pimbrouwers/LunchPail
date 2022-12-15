@@ -7,7 +7,7 @@ namespace LunchPail.Tests
     public class DbConnectionFactoryTest
     {
         protected readonly Mock<IDbConnection> connection;
-        protected readonly DbConnectionFactory connectionFactory;
+        protected readonly IDbConnectionFactory connectionFactory;
 
         public DbConnectionFactoryTest()
         {

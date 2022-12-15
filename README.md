@@ -13,7 +13,7 @@
 public void ConfigureServices(IServiceCollection services)
 {
   //rest of code...
-  
+
   //context
   services.AddTransient<IDbConnectionFactory>(options =>
   {
@@ -29,7 +29,7 @@ public void ConfigureServices(IServiceCollection services)
   });
   services.AddScoped<IDbContext, DbContext>();
 
-  //repositories (we'll add this later)  
+  //repositories (we'll add this later)
 }
 ```
 
@@ -46,7 +46,7 @@ public class Product
 3. Create a repository with a dependency on `IDbContext`
 
 ```c#
-public interface IProductRepository 
+public interface IProductRepository
 {
   Task<Product> Read (int id);
 }
@@ -78,7 +78,7 @@ public void ConfigureServices(IServiceCollection services)
 > Note the invocation of `dbContext.Commit()` which _must_ occur after every interaction is complete to ensure proper disposal of the connection. This is true whether the interaction is a read or write.
 
 ```c#
-public class ProductService 
+public class ProductService
 {
   private readonly IDbContext dbContext;
   private readonly IProductRepository productRepository;
@@ -94,11 +94,11 @@ public class ProductService
   public Product Read(int id)
   {
     var product = productRepository.Read(id);
-    dbContext.Commit();
+    dbContext.Commit(); // You MUST call commit after all interactions
 
     return product;
   }
 }
 ```
 
-Built with ♥ by [Pim Brouwers](https://github.com/pimbrouwers) in Toronto, ON. 
+Built with ♥ by [Pim Brouwers](https://github.com/pimbrouwers) in Toronto, ON.

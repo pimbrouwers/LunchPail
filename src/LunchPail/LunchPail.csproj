@@ -1,15 +1,44 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFramework>netstandard2.0</TargetFramework>
-    <Authors>Pim Brouwers</Authors>
+    <AssemblyName>LunchPail</AssemblyName>
+    <Version>2.1.1</Version>
+
+    <!-- General info -->
     <Description>A .NET Standard compliant Unit of Work implementation for ADO.NET. The UoW is the workhorse of the data context, so the project was dubbed "lunch pail" as a reference to blue collar athletes.</Description>
-    <Copyright>2020</Copyright>    
-    <PackageProjectUrl>https://github.com/pimbrouwers/lunch-pail</PackageProjectUrl>
-    <RepositoryUrl>https://github.com/pimbrouwers/lunch-pail</RepositoryUrl>
-    <RepositoryType>Git</RepositoryType>
-    <PackageTags>unit-of-work ado.net dbcontext datacontext data entity</PackageTags>
-    <Version>2.1.0</Version>
+    <Copyright>Copyright 2022 Pim Brouwers</Copyright>
+    <Authors>Pim Brouwers</Authors>
+    <NeutralLanguage>en-CA</NeutralLanguage>
+
+    <!-- Build config -->
+    <TargetFramework>netstandard2.0</TargetFramework>
+    <DebugType>embedded</DebugType>
+    <OutputType>Library</OutputType>
+    <!-- <TreatWarningsAsErrors>true</TreatWarningsAsErrors> -->
+    <GenerateDocumentationFile>true</GenerateDocumentationFile>
+
+    <!-- NuGet config -->
+    <PackageId>LunchPail</PackageId>
+    <PackageTags>unit-of-work;ado.net;dbcontext;datacontext;data;entity</PackageTags>
+    <PackageProjectUrl>https://github.com/pimbrouwers/LunchPail</PackageProjectUrl>
+    <PackageLicenseExpression>Apache-2.0</PackageLicenseExpression>
+    <PackageReadmeFile>README.md</PackageReadmeFile>
+    <PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
+    <RepositoryType>git</RepositoryType>
+    <RepositoryUrl>https://github.com/pimbrouwers/LunchPail</RepositoryUrl>
+
+    <!-- SourceLink settings -->
+    <PublishRepositoryUrl>true</PublishRepositoryUrl>
+    <EmbedUntrackedSources>true</EmbedUntrackedSources>
+    <IncludeSymbols>true</IncludeSymbols>
   </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.SourceLink.GitHub" Version="1.0.0" PrivateAssets="All" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="../../README.md" Pack="true" PackagePath="\" />
+  </ItemGroup>
 
 </Project>

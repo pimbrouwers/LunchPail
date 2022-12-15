@@ -25,7 +25,7 @@ namespace LunchPail
         /// Commit Transaction
         /// Close Transaction.Connection
         /// Set State to IUnitOfWorkState.Comitted
-        /// Dispose Transaction.Connect & Transaction
+        /// Dispose Transaction.Connect and Transaction
         /// </summary>
         void Commit();
 
@@ -33,7 +33,7 @@ namespace LunchPail
         /// Rollback Transaction
         /// Close Transaction.Connection
         /// Set State to IUnitOfWorkState.RolledBack
-        /// Dispose Transaction.Connect & Transaction
+        /// Dispose Transaction.Connect and Transaction
         /// </summary>
         void Rollback();
     }

@@ -1,38 +1,36 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio Version 16
-VisualStudioVersion = 16.0.30709.132
+# Visual Studio Version 17
+VisualStudioVersion = 17.0.31903.59
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LunchPail", "src\LunchPail\LunchPail.csproj", "{1BEE3DED-3F90-40E5-8495-E23BE936686D}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{45222CD3-6D3E-478C-B44F-407FDC06AEA7}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{DEB9E651-92C9-4DB0-ADCF-44FF982D0498}"
-	ProjectSection(SolutionItems) = preProject
-		.gitignore = .gitignore
-		.travis.yml = .travis.yml
-		README.md = README.md
-	EndProjectSection
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LunchPail", "src\LunchPail\LunchPail.csproj", "{4170E547-428E-4405-A890-59031D842D12}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LunchPail.Tests", "src\LunchPail.Tests\LunchPail.Tests.csproj", "{40C2D4DB-3B3D-4E54-8419-40D9AF76DE7F}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "test", "test", "{6FC582B0-14B6-43B5-B286-B911794ADDC0}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LunchPail.Tests", "test\LunchPail.Tests\LunchPail.Tests.csproj", "{1EC09124-9E4A-4133-BDEF-DF1354005F20}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
-	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{1BEE3DED-3F90-40E5-8495-E23BE936686D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{1BEE3DED-3F90-40E5-8495-E23BE936686D}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{1BEE3DED-3F90-40E5-8495-E23BE936686D}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{1BEE3DED-3F90-40E5-8495-E23BE936686D}.Release|Any CPU.Build.0 = Release|Any CPU
-		{40C2D4DB-3B3D-4E54-8419-40D9AF76DE7F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{40C2D4DB-3B3D-4E54-8419-40D9AF76DE7F}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{40C2D4DB-3B3D-4E54-8419-40D9AF76DE7F}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{40C2D4DB-3B3D-4E54-8419-40D9AF76DE7F}.Release|Any CPU.Build.0 = Release|Any CPU
-	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
-	GlobalSection(ExtensibilityGlobals) = postSolution
-		SolutionGuid = {AFD18837-C74F-4F9F-913F-E5BB994C704B}
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{4170E547-428E-4405-A890-59031D842D12}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4170E547-428E-4405-A890-59031D842D12}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4170E547-428E-4405-A890-59031D842D12}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4170E547-428E-4405-A890-59031D842D12}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1EC09124-9E4A-4133-BDEF-DF1354005F20}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1EC09124-9E4A-4133-BDEF-DF1354005F20}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1EC09124-9E4A-4133-BDEF-DF1354005F20}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1EC09124-9E4A-4133-BDEF-DF1354005F20}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{4170E547-428E-4405-A890-59031D842D12} = {45222CD3-6D3E-478C-B44F-407FDC06AEA7}
+		{1EC09124-9E4A-4133-BDEF-DF1354005F20} = {6FC582B0-14B6-43B5-B286-B911794ADDC0}
 	EndGlobalSection
 EndGlobal
