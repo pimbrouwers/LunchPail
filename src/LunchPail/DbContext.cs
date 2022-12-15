@@ -46,7 +46,7 @@ namespace LunchPail
 
         public void Dispose()
         {
-            Connection?.Dispose();
+            Commit();
         }
 
         public void Rollback()
