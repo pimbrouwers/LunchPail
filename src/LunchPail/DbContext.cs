@@ -1,8 +1,9 @@
-﻿using System.Data;
+﻿using System;
+using System.Data;
 
 namespace LunchPail
 {
-    public class DbContext : IDbContext
+    public class DbContext : IDbContext, IDisposable
     {
         private readonly IDbConnectionFactory _connectionFactory;
         private IDbConnection _connection;
@@ -41,6 +42,11 @@ namespace LunchPail
             {
                 Reset();
             }
+        }
+
+        public void Dispose()
+        {
+            Commit();
         }
 
         public void Rollback()
