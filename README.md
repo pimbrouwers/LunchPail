@@ -75,8 +75,6 @@ public void ConfigureServices(IServiceCollection services)
 
 5. With the context and repository registered, you're free to inject this into your controller or service layer.
 
-> Note the invocation of `dbContext.Commit()` which _must_ occur after every interaction is complete to ensure proper disposal of the connection. This is true whether the interaction is a read or write.
-
 ```c#
 public class ProductService
 {
@@ -94,11 +92,7 @@ public class ProductService
   public Product Read(int id)
   {
     var product = productRepository.Read(id);
-    dbContext.Commit(); // You MUST call commit after all interactions
-
     return product;
   }
 }
 ```
-
-Built with ♥ by [Pim Brouwers](https://github.com/pimbrouwers) in Toronto, ON.
